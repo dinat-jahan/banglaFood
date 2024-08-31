@@ -1,0 +1,67 @@
+<section class="hero">
+  <h2><b>Welcome to Bangla Aahar!</b></h2>
+  <p><b>The easiest Bangla Aahar recipes for all.</b></p>
+  <form action="#" class="search-box">
+    <input type="text" placeholder="Search the Recipe" />
+    <button type="submit">Search</button>
+  </form>
+</section>
+<section class="slider_container">
+  <div class="container-fluid m-5">
+    <div class="swiper card_slider">
+      <div class="swiper-wrapper">
+        <% categories.forEach(category => { %>
+        <div class="swiper-slide">
+          <div class="card" style="width: 18rem">
+            <a href="#">
+              <img
+                src="<%= category.imageUrl %>"
+                class="card-img-top"
+                alt="..."
+              />
+            </a>
+            <div class="card-body">
+              <h2 class="card-title text-center">
+                <%= category.name.charAt(0).toUpperCase() +
+                category.name.slice(1).toLowerCase() %>
+              </h2>
+              <a href="#" class="btn btn-light"
+                >Get Bengali <%= category.name.charAt(0).toUpperCase() +
+                category.name.slice(1).toLowerCase() %> Ideas here</a
+              >
+            </div>
+          </div>
+        </div>
+        <% }) %>
+      </div>
+      <!-- <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div> -->
+      <div class="swiper-pagination"></div>
+    </div>
+  </div>
+</section>
+<section class="recipes">
+  <h1><b>Featured Recipes</b></h1>
+  <div class="swiper-container swiper text-center">
+    <div class="slide-container">
+      <div class="swiper-wrapper card-wrapper">
+        <div class="recipie-section">
+          <% recipes.forEach(recipe => { %>
+          <div class="swiper-slide card">
+            <div class="recipie-card">
+              <img src="<%= recipe.imageUrl %>" />
+              <h2><%= recipe.title %></h2>
+              <p></p>
+              <a href="/recipe/<%= recipe._id %>">View Recipe</a>
+            </div>
+          </div>
+          <% }) %>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div> -->
+  </div>
+  <!-- <script src="js/swiper-bundle.min.js"></script>
+  <script src="script.js"></script> -->
+</section>

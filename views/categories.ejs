@@ -1,0 +1,21 @@
+<section class="slider_container">
+  <div class="container card-group m-5">
+    <% categories.forEach(category => { %>
+    <div class="card" style="width: 18rem">
+      <a href="#">
+        <img src="<%= category.imageUrl %>" class="card-img-top" alt="..." />
+      </a>
+      <div class="card-body">
+        <h2 class="card-title text-center">
+          <%= category.name.charAt(0).toUpperCase() +
+          category.name.slice(1).toLowerCase() %>
+        </h2>
+        <a href="#" class="btn btn-light"
+          >Get Bengali <%= category.name.charAt(0).toUpperCase() +
+          category.name.slice(1).toLowerCase() %> Ideas here</a
+        >
+      </div>
+    </div>
+    <% }) %>
+  </div>
+</section>

@@ -1,0 +1,148 @@
+:root {
+  --primary-color: rgba(181, 45, 11, 0.57);
+  --secondary-color: rgb(122, 7, 1);
+  --padding: 0.3rem;
+  --transition: all;
+  border-radius: 0.6rem;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.html {
+  scroll-behavior: smooth;
+}
+
+.nav-item:hover {
+  background-color: var(--primary-color);
+}
+.hero {
+  width: 100%;
+  height: 500px;
+  margin: 0rem;
+  background: url("/img/pro-img7.jpg");
+  background-size: cover;
+  background-position: center;
+  color: white;
+  text-align: center;
+  padding: 150px 0;
+  margin-bottom: 10px;
+}
+.hero h2 {
+  font-size: 40px;
+  margin-bottom: 18px;
+}
+.hero p {
+  font-size: 25px;
+  margin-bottom: 15px;
+}
+
+.search-box input {
+  width: 22%;
+  padding: 10px;
+  outline: red;
+  border-radius: 5px 0 0 5px;
+  font-size: 1rem;
+}
+.search-box button {
+  padding: 10px;
+  border: 0;
+  border-radius: 5px 0 0 5px;
+  font-size: 1rem;
+  background-color: rgba(165, 110, 42, 0.811);
+  color: aliceblue;
+  cursor: pointer;
+}
+.search-box button:hover {
+  background-color: brown;
+}
+.recipes {
+  padding: 30px 0;
+}
+.recipes h1 {
+  text-align: center;
+  margin: 30px;
+  font-size: 30px;
+}
+.recipie-section {
+  width: 95%;
+  margin: 1rem auto;
+  display: grid;
+  overflow: hidden;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  column-gap: 10px;
+}
+.container {
+  max-width: 1000px;
+  width: 100%;
+  padding: 40px 0;
+}
+.recipes .slide-container {
+  margin: 0 30px;
+  overflow: hidden;
+}
+.recipes .swiper-slide card {
+  margin: 30px 10px;
+}
+.recipie-card {
+  background: orange;
+  margin: 30px 10px;
+  border-radius: 20px;
+  border: 1px solid white;
+  overflow: hidden;
+  box-shadow: 0 5px 8px rgba(165, 110, 42, 0.811);
+}
+
+.recipie-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+.recipie-card h2 {
+  font-size: 20px;
+  padding: 10px;
+}
+.recipie-card a {
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  background: white;
+  color: black;
+  padding: 4px 0;
+  cursor: pointer;
+}
+.recipie-card a:hover {
+  text-decoration: underline;
+}
+
+footer {
+  background: rgba(255, 196, 0, 0.859);
+  padding: 10px 0;
+  color: azure;
+  text-align: center;
+}
+footer p {
+  margin-bottom: 4px;
+}
+.swiper-slide .card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.swiper-slide .card img {
+  object-fit: cover;
+  height: 250px; /* Fixed height for all images */
+  width: 100%;
+}
+
+.swiper-slide .card-body {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
