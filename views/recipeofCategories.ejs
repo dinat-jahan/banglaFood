@@ -1,0 +1,21 @@
+<h1><%= categoryName %></h1>
+<div class="swiper-container swiper text-center">
+  <div class="slide-container">
+    <div class="swiper-wrapper card-wrapper">
+      <div class="recipie-section">
+        <% recipes.forEach(recipe => { %>
+        <div class="swiper-slide card">
+          <div class="recipie-card">
+            <img src="<%= recipe.imageUrl %>" />
+            <h2><%= recipe.title %></h2>
+            <p></p>
+            <a href="/recipe/<%= recipe._id %>">View Recipe</a>
+          </div>
+        </div>
+        <% }) %>
+      </div>
+    </div>
+  </div>
+  <!-- <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div> -->
+</div>

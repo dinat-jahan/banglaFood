@@ -13,7 +13,7 @@
         <% categories.forEach(category => { %>
         <div class="swiper-slide">
           <div class="card" style="width: 18rem">
-            <a href="#">
+            <a href="/category/<%= category.name%>">
               <img
                 src="<%= category.imageUrl %>"
                 class="card-img-top"
@@ -25,7 +25,7 @@
                 <%= category.name.charAt(0).toUpperCase() +
                 category.name.slice(1).toLowerCase() %>
               </h2>
-              <a href="#" class="btn btn-light"
+              <a href="/category/<%= category.name%>" class="btn btn-light"
                 >Get Bengali <%= category.name.charAt(0).toUpperCase() +
                 category.name.slice(1).toLowerCase() %> Ideas here</a
               >
@@ -49,7 +49,9 @@
           <% recipes.forEach(recipe => { %>
           <div class="swiper-slide card">
             <div class="recipie-card">
-              <img src="<%= recipe.imageUrl %>" />
+              <a href="/recipe/<%= recipe._id %>">
+                <img src="<%= recipe.imageUrl %>"
+              /></a>
               <h2><%= recipe.title %></h2>
               <p></p>
               <a href="/recipe/<%= recipe._id %>">View Recipe</a>

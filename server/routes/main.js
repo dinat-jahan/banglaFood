@@ -94,4 +94,27 @@ router.get("/recipes", async (req, res) => {
   // res.sendFile(__dirname + "/category.html");
 });
 
+router.get("/category/:categoryName", async (req, res) => {
+  try {
+    const categoryName = req.params.categoryName;
+    const recipes = await RecipeModel.find({ categories: categoryName });
+    for (recipe of recipes) {
+      recipe.imageUrl = await getSignedUrl(
+        s3Client,
+        new GetObjectCommand({
+          Bucket: bucketName,
+          Key: recipe.imageName,
+        }),
+        { expiresIn: 3600 }
+      );
+    }
+    res.render("recipeofCategories", {
+      categoryName,
+      recipes,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+});
+
 module.exports = router;

@@ -2,7 +2,7 @@
   <div class="container card-group m-5">
     <% categories.forEach(category => { %>
     <div class="card" style="width: 18rem">
-      <a href="#">
+      <a href="/category/<%= category.name%>">
         <img src="<%= category.imageUrl %>" class="card-img-top" alt="..." />
       </a>
       <div class="card-body">
@@ -10,7 +10,7 @@
           <%= category.name.charAt(0).toUpperCase() +
           category.name.slice(1).toLowerCase() %>
         </h2>
-        <a href="#" class="btn btn-light"
+        <a href="/category/<%= category.name%>" class="btn btn-light"
           >Get Bengali <%= category.name.charAt(0).toUpperCase() +
           category.name.slice(1).toLowerCase() %> Ideas here</a
         >
