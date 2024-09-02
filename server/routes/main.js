@@ -26,7 +26,23 @@ router.get("/", async (req, res) => {
         { expiresIn: 3600 }
       );
     }
-    const recipes = await RecipeModel.find();
+
+    let limit = 10;
+    let page = parseInt(req.query.page) || 1;
+
+    let countRecipe = await RecipeModel.countDocuments();
+    let countPage = Math.ceil(countRecipe / 10);
+
+    const startIndex = (page - 1) * limit;
+    const endIndex = page * limit;
+
+    const hasPrevpage = startIndex > 0;
+    const hasNextpage = endIndex < countRecipe;
+
+    const recipes = await RecipeModel.find()
+      .limit(limit)
+      .skip(startIndex)
+      .exec();
     for (let recipe of recipes) {
       recipe.imageUrl = await getSignedUrl(
         s3Client,
@@ -41,6 +57,11 @@ router.get("/", async (req, res) => {
     res.render("index.ejs", {
       categories,
       recipes,
+      nextPage: hasNextpage ? page + 1 : null,
+      prevPage: hasPrevpage ? page - 1 : null,
+      countPage,
+
+      current: page,
     });
   } catch (error) {
     console.log(error);
@@ -110,6 +131,38 @@ router.get("/category/:categoryName", async (req, res) => {
     }
     res.render("recipeofCategories", {
       categoryName,
+      recipes,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+router.post("/search", async (req, res) => {
+  try {
+    let searchTerm = req.body.searchTerm;
+    const searchNoSpecialChar = searchTerm.replace(/[^a-zA-Z0-9]/g, "");
+
+    const recipes = await RecipeModel.find({
+      $or: [
+        { title: { $regex: new RegExp(searchNoSpecialChar, "i") } },
+        {
+          ingredients: { $regex: new RegExp(searchNoSpecialChar, "i") },
+        },
+        { category: { $regex: new RegExp(searchNoSpecialChar, "i") } },
+      ],
+    });
+    for (recipe of recipes) {
+      recipe.imageUrl = await getSignedUrl(
+        s3Client,
+        new GetObjectCommand({
+          Bucket: bucketName,
+          Key: recipe.imageName,
+        }),
+        { expiresIn: 3600 }
+      );
+    }
+    res.render("search", {
       recipes,
     });
   } catch (error) {

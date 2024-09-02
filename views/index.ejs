@@ -1,8 +1,14 @@
 <section class="hero">
   <h2><b>Welcome to Bangla Aahar!</b></h2>
   <p><b>The easiest Bangla Aahar recipes for all.</b></p>
-  <form action="#" class="search-box">
-    <input type="text" placeholder="Search the Recipe" />
+  <form method="POST" role="search" action="/search" class="search-box">
+    <input
+      id="searchInput"
+      name="searchTerm"
+      type="search"
+      placeholder="Search"
+      aria-label="Search"
+    />
     <button type="submit">Search</button>
   </form>
 </section>
@@ -61,9 +67,27 @@
         </div>
       </div>
     </div>
-    <!-- <div class="swiper-button-prev"></div>
-    <div class="swiper-button-next"></div> -->
   </div>
-  <!-- <script src="js/swiper-bundle.min.js"></script>
-  <script src="script.js"></script> -->
 </section>
+
+<nav aria-label="Page navigation ">
+  <ul class="pagination">
+    <% if (prevPage !== null) { %>
+    <li class="page-item">
+      <a class="page-link" href="/?page=<%= prevPage %>" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    <% } %> <% for( let page =1 ; page <= countPage ; page++ ) { %>
+    <li class="page-item">
+      <a class="page-link" href="/?page=<%= page %>"><%= page %></a>
+    </li>
+    <% } %> <% if (nextPage !== null) { %>
+    <li class="page-item">
+      <a class="page-link" href="/?page=<%= nextPage %>" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+    <% } %>
+  </ul>
+</nav>

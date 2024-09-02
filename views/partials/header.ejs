@@ -27,9 +27,11 @@
         class="collapse navbar-collapse justify-content-end align-center"
         id="navbar02"
       >
-        <form class="d-flex" role="search">
+        <form class="d-flex" method="POST" role="search" action="/search">
           <input
             class="form-control me-2"
+            id="searchInput"
+            name="searchTerm"
             type="search"
             placeholder="Search"
             aria-label="Search"
