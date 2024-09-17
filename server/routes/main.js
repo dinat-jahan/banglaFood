@@ -103,7 +103,7 @@ router.get("/recipes", async (req, res) => {
         { expiresIn: 3600 }
       );
     }
-    console.log(categories);
+
     res.render("categories.ejs", {
       categories,
     });

@@ -127,19 +127,19 @@ footer {
 footer p {
   margin-bottom: 4px;
 }
-.swiper-slide .card {
+.card-category .card {
   height: 100%;
   display: flex;
   flex-direction: column;
 }
 
-.swiper-slide .card img {
+.card-category .card img {
   object-fit: cover;
   height: 250px; /* Fixed height for all images */
   width: 100%;
 }
 
-.swiper-slide .card-body {
+.card-category .card-body {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
