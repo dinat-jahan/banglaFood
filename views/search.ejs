@@ -4,14 +4,14 @@
     <div class="swiper-wrapper card-wrapper">
       <div class="recipie-section">
         <% recipes.forEach(recipe => { %>
-        <div class="swiper-slide card">
-          <div class="recipie-card">
-            <img src="<%= recipe.imageUrl %>" />
-            <h2><%= recipe.title %></h2>
-            <p></p>
-            <a href="/recipe/<%= recipe._id %>">View Recipe</a>
-          </div>
+
+        <div class="recipie-card">
+          <img src="<%= recipe.imageUrl %>" />
+          <h2><%= recipe.title %></h2>
+          <p></p>
+          <a href="/recipe/<%= recipe._id %>">View Recipe</a>
         </div>
+
         <% }) %>
       </div>
     </div>

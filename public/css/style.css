@@ -14,8 +14,14 @@
 
 .html {
   scroll-behavior: smooth;
+  height: 100%;
 }
-
+.body {
+  position: relative;
+  margin: 0;
+  min-height: 100vh;
+  padding-top: 70px;
+}
 .nav-item:hover {
   background-color: var(--primary-color);
 }
@@ -61,6 +67,7 @@
 }
 .recipes {
   padding: 30px 0;
+  padding-top: 80px;
 }
 .recipes h1 {
   text-align: center;
@@ -74,56 +81,76 @@
   overflow: hidden;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   column-gap: 10px;
+  min-height: 100%;
 }
-.container {
+.form-control {
+  min-width: 10%;
+  margin-left: 200px;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  outline: red;
+  border-radius: 5px 0 0 5px;
+}
+
+.recipes .container {
   max-width: 1000px;
   width: 100%;
-  padding: 40px 0;
+  padding: 15px 10px;
 }
-.recipes .slide-container {
-  margin: 0 30px;
+.slide-container {
+  margin: 15px 10px;
   overflow: hidden;
+  margin-bottom: 13vh;
 }
-.recipes .swiper-slide card {
+/* .recipes .swiper-slide card {
   margin: 30px 10px;
-}
+} */
 .recipie-card {
+  width: 265px;
+  justify-content: space-between;
+  flex: 1 1 21rem;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
   background: orange;
-  margin: 30px 10px;
+  margin: 10px 10px;
+  padding: 10px 10px;
   border-radius: 20px;
   border: 1px solid white;
   overflow: hidden;
   box-shadow: 0 5px 8px rgba(165, 110, 42, 0.811);
+  align-items: normal;
 }
 
 .recipie-card img {
   width: 100%;
-  height: 200px;
+  height: 180px;
+  border-radius: 18px;
   object-fit: cover;
 }
 .recipie-card h2 {
-  font-size: 20px;
-  padding: 10px;
+  font-size: 15px;
+  padding: 5px;
+  font-weight: 15px;
+  text-align: center;
 }
 .recipie-card a {
+  margin-top: auto;
   display: block;
   text-align: center;
+  margin-bottom: 3px;
   text-decoration: none;
-  background: white;
+  background-color: white;
   color: black;
-  padding: 4px 0;
+  padding: 10px 10px;
   cursor: pointer;
 }
 .recipie-card a:hover {
   text-decoration: underline;
 }
 
-footer {
-  background: rgba(255, 196, 0, 0.859);
-  padding: 10px 0;
-  color: azure;
-  text-align: center;
-}
 footer p {
   margin-bottom: 4px;
 }
@@ -146,6 +173,16 @@ footer p {
   justify-content: center;
   text-align: center;
 }
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
+}
+.page-item a {
+  background-color: antiquewhite;
+  color: black;
+}
 
 .footer .container {
   max-width: 1130px;
@@ -160,6 +197,8 @@ footer p {
   list-style: none;
 }
 .footer {
+  margin-top: auto;
+  width: 100%;
   background-color: orange;
   padding: 15px 0;
 }
@@ -213,18 +252,31 @@ footer p {
 @media (max-width: 767px) {
   .footer .footer-col {
     width: 50%;
-    margin-bottom: 30px;
-    padding: 0px 30px;
+    margin-bottom: 20px;
+    padding: 0px 20px;
+  }
+  .form-control {
+    min-width: 20%;
+    margin-left: 7px;
+    display: flex;
   }
 }
 @media (max-width: 574px) {
   .footer .footer-col {
     width: 100%;
-    padding: 0px 30px;
+    padding: 0px 20px;
+  }
+  .form-control {
+    min-width: 10%;
+    display: flex;
   }
 }
 .footer .bottom {
   color: black;
   text-align: left;
   padding: 0px 170px;
+  margin-left: 25px;
 }
+/* .container .card {
+  margin: 20px 10px;
+} */
