@@ -13,16 +13,16 @@
   </form>
 </section>
 <section class="slider_container">
-  <div class="container-fluid m-5">
+  <div class="container-fluid mt-5 mb-3 ml-2">
     <div class="swiper card_slider">
       <div class="swiper-wrapper">
         <% categories.forEach(category => { %>
         <div class="swiper-slide card-category">
-          <div class="card" style="width: 18rem">
+          <div class="card-deck" style="width: 83%">
             <a href="/category/<%= category.name%>">
               <img
                 src="<%= category.imageUrl %>"
-                class="card-img-top"
+                class="card-img border rounded-circle"
                 alt="..."
               />
             </a>
@@ -72,14 +72,12 @@
 <section class="recipes">
   <h1><b>Featured Recipes</b></h1>
   <div class="swiper-container swiper text-center">
-    <div class="slide-container container-fluid m-5">
+    <div class="slide-container container-fluid m-3">
       <div class="swiper-wrapper card-wrapper">
         <div class="recipie-section">
           <% recipes.forEach(recipe => { %>
           <div class="recipie-card">
-            <a href="/recipe/<%= recipe._id %>">
-              <img src="<%= recipe.imageUrl %>"
-            /></a>
+            <img src="<%= recipe.imageUrl %>" />
             <h2><b><%= recipe.title %></b></h2>
 
             <a href="/recipe/<%= recipe._id %>">View Recipe</a>
