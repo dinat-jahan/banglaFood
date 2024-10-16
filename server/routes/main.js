@@ -4,6 +4,7 @@ const express = require("express");
 const router = express.Router();
 const { generateFileName, cleanInputData } = require("../helper/utils");
 const { RecipeModel, CategoryModel } = require("../models/recipe");
+const authController = require("../controllers/authController");
 
 const {
   S3Client,
@@ -173,5 +174,11 @@ router.post("/search", async (req, res) => {
 router.get("/contact", (req, res) => {
   res.render("contact.ejs", {});
 });
+
+//auth routes
+router.get("/signup", authController.signup_get);
+router.post("/signup", authController.signup_post);
+router.get("/login", authController.login_get);
+router.post("/login", authController.login_post);
 
 module.exports = router;

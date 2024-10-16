@@ -481,3 +481,98 @@ contact-page::after {
     width: 100%;
   }
 }
+
+/* signup page */
+.register-page {
+  background-color: wheat;
+}
+
+.card {
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+h3 {
+  font-weight: 600;
+  position: relative;
+}
+
+h3::after {
+  content: "";
+  width: 30px;
+  height: 3px;
+  background-color: black;
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.input-group-text {
+  background-color: #f1f1f1;
+}
+
+.input-group input {
+  border: none;
+  background-color: #f1f1f1;
+  border-radius: 0;
+}
+
+.text-end a {
+  color: #5f3dc4;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.text-end a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 576px) {
+  .card {
+    width: 90%;
+  }
+
+  h3::after {
+    bottom: -8px;
+  }
+}
+
+@media (max-width: 576px) {
+  .card {
+    width: 90%;
+  }
+
+  h3::after {
+    bottom: -8px;
+  }
+}
+
+/* login page */
+.login-page {
+  background-color: wheat;
+}
+
+.login-box {
+  width: 100%;
+  max-width: 400px;
+  background-color: #fff;
+}
+
+.form-group {
+  padding: 8px;
+  font-size: 16px;
+}
+
+.btn-orange {
+  background-color: #ff6f00;
+  color: white;
+  padding: 10px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.btn-orange:hover {
+  background-color: #e65c00;
+}
