@@ -1,0 +1,162 @@
+<div class="container">
+  <form action="/upload" method="POST" enctype="multipart/form-data">
+    <div class="mb-3">
+      <label for="title" class="form-label">Title</label>
+      <input
+        type="text"
+        class="form-control"
+        id="title"
+        name="title"
+        placeholder="title of the recipe"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="description" class="form-label">Description:</label>
+      <textarea
+        class="form-control"
+        id="description"
+        name="description"
+        rows="2"
+        placeholder="put the description:"
+      ></textarea>
+    </div>
+    <div class="mb-3">
+      <label for="ingredients" class="form-label">Ingredients:</label>
+      <textarea
+        class="form-control"
+        id="ingredients"
+        name="ingredients"
+        rows="3"
+        placeholder="put the ingredients:"
+      ></textarea>
+    </div>
+    <div class="mb-3">
+      <label for="instructions" class="form-label">Instructions:</label>
+      <textarea
+        class="form-control"
+        id="instructions"
+        name="instructions"
+        rows="3"
+        placeholder="put the instructions:"
+      ></textarea>
+    </div>
+    <div class="mb-3">
+      <label for="servings" class="form-label">Servings:</label>
+      <input
+        type="number"
+        class="form-control"
+        id="servings"
+        name="servings"
+        placeholder="For how many people the recipe is for?"
+      />
+    </div>
+    <p>Select the categories:</p>
+    <div class="form-check">
+      <input
+        class="form-check-input"
+        type="checkbox"
+        value="chicken"
+        id="chicken"
+        name="categories"
+      />
+      <label class="form-check-label" for="chicken"> chicken </label>
+    </div>
+    <div class="form-check">
+      <input
+        class="form-check-input"
+        type="checkbox"
+        value="beef"
+        id="beef"
+        name="categories"
+      />
+      <label class="form-check-label" for="beef"> beef </label>
+    </div>
+    <div class="form-check">
+      <input
+        class="form-check-input"
+        type="checkbox"
+        value="drinks"
+        id="drinks"
+        name="categories"
+      />
+      <label class="form-check-label" for="drinks"> drinks </label>
+    </div>
+    <div class="form-check">
+      <input
+        class="form-check-input"
+        type="checkbox"
+        value="dessert"
+        id="dessert"
+        name="categories"
+      />
+      <label class="form-check-label" for="dessert"> dessert </label>
+    </div>
+    <div class="form-check">
+      <input
+        class="form-check-input"
+        type="checkbox"
+        value="pitha"
+        id="pitha"
+        name="categories"
+      />
+      <label class="form-check-label" for="pitha"> pitha </label>
+    </div>
+    <div class="form-check">
+      <input
+        class="form-check-input"
+        type="checkbox"
+        value="breakfast"
+        id="breakfast"
+        name="categories"
+      />
+      <label class="form-check-label" for="breakfast"> breakfast </label>
+    </div>
+    <div class="form-check">
+      <input
+        class="form-check-input"
+        type="checkbox"
+        value="dinner"
+        id="dinner"
+        name="categories"
+      />
+      <label class="form-check-label" for="dinner"> dinner </label>
+    </div>
+    <div class="form-check">
+      <input
+        class="form-check-input"
+        type="checkbox"
+        value="lunch"
+        id="lunch"
+        name="categories"
+      />
+      <label class="form-check-label" for="lunch"> lunch </label>
+    </div>
+    <div class="form-check">
+      <input
+        class="form-check-input"
+        type="checkbox"
+        value="vegetable"
+        id="vegetable"
+        name="categories"
+      />
+      <label class="form-check-label" for="vegetable"> vegetable </label>
+    </div>
+    <div class="mb-3">
+      <label for="imgFile" class="form-label"
+        >Upload an image of the recipe:</label
+      >
+      <input
+        class="form-control"
+        type="file"
+        id="imgFile"
+        name="image"
+        accept="image/*"
+      />
+    </div>
+    <div class="col-12">
+      <button class="btn btn-primary" type="submit" action="/">
+        Submit form
+      </button>
+    </div>
+  </form>
+</div>

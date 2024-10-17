@@ -97,10 +97,10 @@
   padding: 25px 25px;
 }
 .recipes .img-fluid {
-  max-width: 100%;
-  height: auto;
+  border: 3px solid black;
+  max-width: 20%;
+  max-height: 30%;
 }
-
 .slide-container {
   margin: 15px 10px;
   overflow: hidden;
@@ -296,7 +296,7 @@ footer p {
 } */
 
 /* style for contact page */
-body.contact-page {
+.contact-page {
   min-height: 100vh;
   width: 100%;
   display: flex;
@@ -483,6 +483,17 @@ contact-page::after {
 }
 
 /* signup page */
+.register-page .form-control {
+  display: block;
+  width: 75%;
+  margin: auto;
+}
+.error {
+  color: #ff0099;
+  margin: 10px 2px;
+  font-size: 0.8em;
+  font-weight: bold;
+}
 .register-page {
   background-color: wheat;
 }
@@ -550,6 +561,12 @@ h3::after {
 }
 
 /* login page */
+.login-page .form-control {
+  display: block;
+  width: 95%;
+  padding: 4px;
+  margin: 4px auto;
+}
 .login-page {
   background-color: wheat;
 }
@@ -575,4 +592,67 @@ h3::after {
 
 .btn-orange:hover {
   background-color: #e65c00;
+}
+
+/* Custom styles for the sidebar */
+.sidebar {
+  position: fixed;
+  top: 60px; /* Push below the navbar */
+  right: 0;
+  width: 250px;
+  height: 80%; /* Set a shorter height */
+  background-color: #f8f9fa;
+  transition: transform 0.3s ease;
+  transform: translateX(100%);
+  z-index: 1050; /* Make sure it's above the navbar */
+}
+.sidebar.show {
+  transform: translateX(0);
+}
+
+/* bottom form */
+.comm .h2 {
+  padding: 5px;
+}
+.comm {
+  max-width: 800px;
+  max-height: 300px;
+  margin: 0 auto;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.comm .p {
+  padding: 3px;
+  margin: 0;
+}
+
+.comm .a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.comm .label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+textarea {
+  width: 90%;
+  height: 60px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.comm-button {
+  display: block;
+  margin: 10px 0;
+  padding: 10px 20px;
+  background-color: orange;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
 }
