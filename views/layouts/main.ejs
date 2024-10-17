@@ -43,6 +43,19 @@
     ></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
+      const toggleButton = document.getElementById("toggleButton");
+      const closeButton = document.getElementById("closeButton");
+      const sidebar = document.getElementById("sidebar");
+
+      toggleButton.addEventListener("click", () => {
+        sidebar.classList.toggle("show");
+      });
+
+      closeButton.addEventListener("click", () => {
+        sidebar.classList.remove("show");
+      });
+    </script>
+    <script>
       var swiper = new Swiper(".card_slider", {
         spaceBetween: 20,
         loop: true,

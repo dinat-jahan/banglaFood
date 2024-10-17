@@ -5,7 +5,7 @@ const router = express.Router();
 const { generateFileName, cleanInputData } = require("../helper/utils");
 const { RecipeModel, CategoryModel } = require("../models/recipe");
 const authController = require("../controllers/authController");
-
+const { checkUser, requireAuth } = require("../middleware/authMiddleware");
 const {
   S3Client,
   PutObjectCommand,
@@ -13,6 +13,69 @@ const {
 } = require("@aws-sdk/client-s3");
 const { getSignedUrl } = require("@aws-sdk/s3-request-presigner");
 const s3Client = require("../config/awsConfig");
+const multer = require("multer");
+
+const storage = multer.memoryStorage();
+const upload = multer({ storage: storage });
+
+router.get("*", checkUser);
+
+router.get("/upload", (req, res) => {
+  res.render("addRecipe");
+});
+
+router.post("/upload", upload.single("image"), async (req, res) => {
+  try {
+    const title = req.body.title;
+    const servings = req.body.servings;
+    const categories = req.body.categories;
+    const description = req.body.description;
+    const ingredientsInput = req.body.ingredients;
+    const ingredients = ingredientsInput
+      ? cleanInputData(ingredientsInput)
+      : [];
+
+    const instructionsInput = req.body.instructions;
+    const instructions = instructionsInput
+      ? cleanInputData(instructionsInput)
+      : [];
+    const imgFile = req.file;
+    if (!imgFile) {
+      return res
+        .status(400)
+        .json({ success: false, message: "No file uploaded." });
+    }
+
+    const imageName = generateFileName();
+    if (!imageName) {
+      throw new Error("Failed to generate a file name for the image.");
+    }
+
+    const uploadParams = {
+      Bucket: bucketName,
+      Key: imageName,
+      Body: req.file.buffer,
+      ContentType: req.file.mimetype,
+    };
+
+    await s3Client.send(new PutObjectCommand(uploadParams));
+
+    const newRecipe = new RecipeModel({
+      title,
+      description,
+      ingredients,
+      instructions,
+      servings,
+      categories,
+      imageName,
+    });
+    await newRecipe.save();
+    res.redirect("/");
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ success: false, message: "An error occurred." });
+  }
+});
 
 router.get("/", async (req, res) => {
   try {
@@ -180,5 +243,6 @@ router.get("/signup", authController.signup_get);
 router.post("/signup", authController.signup_post);
 router.get("/login", authController.login_get);
 router.post("/login", authController.login_post);
+router.get("/logout", authController.logout_get);
 
 module.exports = router;
