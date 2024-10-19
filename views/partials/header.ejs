@@ -51,7 +51,7 @@
             <a class="nav-link text-dark" href="/contact">Contact</a>
           </li>
 
-          <% if(user){ %>
+          <% if(locals.user){ %>
           <li class="nav-item">
             <a class="nav-link text-dark" href="/logout">Log out</a>
           </li>
@@ -73,11 +73,13 @@
     </div>
   </nav>
   <!-- Sidebar -->
+  <% if(locals.user){ %>
   <div class="sidebar" id="sidebar">
     <div class="p-4">
       <p>Welcome <%= user.username %>!</p>
-      <li><a href="/upload">Add recipe</a></li>
-      <button class="btn btn-secondary" id="closeButton">Close</button>
+      <a href="/upload">Add recipe</a><br />
+      <button class="btn btn-warning" id="closeButton">Close</button>
     </div>
   </div>
+  <% } %>
 </header>

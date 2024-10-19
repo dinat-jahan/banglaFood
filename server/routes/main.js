@@ -6,11 +6,7 @@ const { generateFileName, cleanInputData } = require("../helper/utils");
 const { RecipeModel, CategoryModel } = require("../models/recipe");
 const authController = require("../controllers/authController");
 const { checkUser, requireAuth } = require("../middleware/authMiddleware");
-const {
-  S3Client,
-  PutObjectCommand,
-  GetObjectCommand,
-} = require("@aws-sdk/client-s3");
+const { PutObjectCommand, GetObjectCommand } = require("@aws-sdk/client-s3");
 const { getSignedUrl } = require("@aws-sdk/s3-request-presigner");
 const s3Client = require("../config/awsConfig");
 const multer = require("multer");
@@ -90,7 +86,7 @@ router.get("/", async (req, res) => {
         { expiresIn: 3600 }
       );
     }
-
+    //pagination
     let limit = 10;
     let page = parseInt(req.query.page) || 1;
 
@@ -206,14 +202,13 @@ router.post("/search", async (req, res) => {
   try {
     let searchTerm = req.body.searchTerm;
     const searchNoSpecialChar = searchTerm.replace(/[^a-zA-Z0-9]/g, "");
-
     const recipes = await RecipeModel.find({
       $or: [
         { title: { $regex: new RegExp(searchNoSpecialChar, "i") } },
         {
           ingredients: { $regex: new RegExp(searchNoSpecialChar, "i") },
         },
-        { category: { $regex: new RegExp(searchNoSpecialChar, "i") } },
+        { categories: { $regex: new RegExp(searchNoSpecialChar, "i") } },
       ],
     });
     for (recipe of recipes) {
