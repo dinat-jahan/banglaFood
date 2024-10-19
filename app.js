@@ -6,7 +6,7 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const crypto = require("crypto");
 const cookieParser = require("cookie-parser");
-
+const { checkUser } = require("./server/middleware/authMiddleware");
 const app = express();
 const PORT = process.env.PORT || 2000;
 const connectDB = require("./server/config/db");
@@ -20,7 +20,7 @@ app.use(expressLayout);
 app.set("layout", "./layouts/main");
 app.set("view engine", "ejs");
 app.use("/", require("./server/routes/main"));
-
+app.use(checkUser);
 connectDB();
 
 app.listen(PORT, () => {
