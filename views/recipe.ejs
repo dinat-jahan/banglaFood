@@ -29,7 +29,7 @@
     </div>
   </div>
   <div>
-    <form class="comm">
+    <form class="comm" method="POST" action="/comment">
       <div>
         <h2>Post a comment</h2>
         <p>
@@ -43,5 +43,74 @@
 
       <button type="submit" class="comm-button">Post Comment</button>
     </form>
+    <div class="container comments mt-5"></div>
   </div>
 </div>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const loadAllComments = () => {
+      const container = document.querySelector(".comments");
+      container.innerHTML = `
+        <% if (comments) { %>
+          <% comments = comments.reverse() %>
+          <% comments.forEach(function (comment) { %>
+            <div class="card mb-3">
+              <div class="card-body">
+                <div class="d-flex align-items-center">
+                  <i class="fas fa-user-circle fa-2x me-3" style="cursor: pointer;"></i>
+                  <h5 class="mb-0"><%= comment.createdBy.username %></h5>
+                </div>
+                <p class="mt-2"><%= comment.content %></p>
+              </div>
+            </div>
+          <% }) %>
+        <% } %>
+      `;
+    };
+    loadAllComments();
+
+    const form = document.querySelector(".comm");
+    const comments = document.querySelector("#comments");
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const content = form.comment.value;
+      const recipe_id = "<%= slug %>";
+
+      try {
+        const res = await fetch("/comment", {
+          method: "POST",
+          body: JSON.stringify({ content, recipe_id }),
+          headers: { "Content-Type": "application/json" },
+        });
+
+        const data = await res.json();
+
+        if (res.ok && data.comment) {
+          // Handle successful comment posting
+          const newCommentHTML = `
+        <div class="card mb-3">
+          <div class="card-body">
+            <div class="d-flex align-items-center">
+              <i class="fas fa-user-circle fa-2x me-3" style="cursor: pointer;"></i>
+              <h5 class="mb-0">${data.comment.createdBy.username}</h5>
+            </div>
+            <p class="mt-2">${data.comment.content}</p>
+          </div>
+        </div>`;
+
+          const container = document.querySelector(".comments");
+          container.insertAdjacentHTML("afterbegin", newCommentHTML);
+          form.comment.value = "";
+        } else if (res.status === 401) {
+          // Handle unauthorized access
+          alert("You need to be logged in to post a comment.");
+          window.location.href = "/login"; // Redirect to login page
+        } else {
+          console.log("Failed to add comment");
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    });
+  });
+</script>

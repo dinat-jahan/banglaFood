@@ -1,10 +1,12 @@
 require("dotenv").config();
+const mongoose = require("mongoose");
 const bucketName = process.env.AWS_BUCKET_NAME;
 const express = require("express");
 const router = express.Router();
 const { generateFileName, cleanInputData } = require("../helper/utils");
-const { RecipeModel, CategoryModel } = require("../models/recipe");
+const { RecipeModel, CategoryModel, Comment } = require("../models/recipe");
 const authController = require("../controllers/authController");
+const contactController = require("../controllers/contactController");
 const { checkUser, requireAuth } = require("../middleware/authMiddleware");
 const { PutObjectCommand, GetObjectCommand } = require("@aws-sdk/client-s3");
 const { getSignedUrl } = require("@aws-sdk/s3-request-presigner");
@@ -141,14 +143,51 @@ router.get("/recipe/:id", async (req, res) => {
       }),
       { expiresIn: 3600 }
     );
+
+    const comments = await Comment.find({
+      recipe: new mongoose.Types.ObjectId(slug),
+    }).populate("createdBy", "username");
+
     res.render("recipe", {
       recipe,
       currentRoute: `/recipe/${slug}`,
+      slug,
+      comments,
     });
   } catch (error) {
     console.log(error);
   }
 });
+
+router.post("/comment", checkUser, async (req, res) => {
+  try {
+    const content = req.body.content;
+    const recipe = req.body.recipe_id;
+    const createdBy = res.locals.user._id;
+
+    const comment = new Comment({
+      content,
+      createdBy,
+      recipe,
+    });
+    await comment.save();
+    await comment.populate("createdBy", "username");
+    res.status(201).send({ comment });
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+// router.get("/comment", async (req, res) => {
+//   try {
+//     recipe = req.body.recipe_id;
+//     const comments = await Comment.find({ recipe });
+//     console.log(comments);
+//     res.send(comments);
+//   } catch (err) {
+//     console.log(err);
+//   }
+// });
 
 router.get("/recipes", async (req, res) => {
   try {
@@ -229,10 +268,10 @@ router.post("/search", async (req, res) => {
   }
 });
 
-router.get("/contact", (req, res) => {
-  res.render("contact.ejs", {});
-});
-
+//contact routes
+router.get("/contact", contactController.contact_get);
+router.post("/contact", contactController.contact_post);
+router.get("/message", contactController.message_get);
 //auth routes
 router.get("/signup", authController.signup_get);
 router.post("/signup", authController.signup_post);

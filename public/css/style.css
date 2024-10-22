@@ -663,3 +663,22 @@ textarea {
   border-radius: 3px;
   cursor: pointer;
 }
+
+.message {
+  margin-top: 100px;
+  margin-bottom: 20px;
+  height: 80vh;
+}
+
+.comments .card-body {
+  background-color: #f8f9fa; /* Light gray background */
+  border-radius: 8px;
+}
+
+.comments .fas.fa-user-circle {
+  color: #6c757d; /* Bootstrap's secondary color */
+}
+
+.comments h5 {
+  font-weight: 600;
+}

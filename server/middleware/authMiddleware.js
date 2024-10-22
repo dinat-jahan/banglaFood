@@ -10,14 +10,26 @@ const requireAuth = (req, res, next) => {
     jwt.verify(token, process.env.JWT_SECRET_KEY, (err, decodedToken) => {
       if (err) {
         console.log(err.message);
-        res.redirect("/login");
+        // Check if the request is an AJAX request
+        if (req.xhr || req.headers.accept.includes("application/json")) {
+          return res
+            .status(401)
+            .json({ error: "Unauthorized. Please log in." });
+        } else {
+          return res.redirect("/login");
+        }
       } else {
         console.log(decodedToken);
         next();
       }
     });
   } else {
-    res.redirect("/login");
+    // Check if the request is an AJAX request
+    if (req.xhr || req.headers.accept.includes("application/json")) {
+      return res.status(401).json({ error: "Unauthorized. Please log in." });
+    } else {
+      return res.redirect("/login");
+    }
   }
 };
 
