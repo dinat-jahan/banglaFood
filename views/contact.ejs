@@ -1,7 +1,7 @@
 <div class="contact-page">
   <section id="contact">
     <div class="section-header">
-      <div class="container">
+      <div class="container pt-4">
         <h2>Contact Us</h2>
         <p>If any inquiry please contact with us.</p>
       </div>
@@ -45,20 +45,20 @@
         </div>
 
         <div class="contact-form">
-          <form action="" id="contact-form">
+          <form action="/contact" method="POST" id="contact-form">
             <h2>Send Message</h2>
             <div class="input-box">
-              <input type="text" required="true" name="" />
+              <input type="text" required="true" name="fullName" />
               <span>Full Name</span>
             </div>
 
             <div class="input-box">
-              <input type="email" required="true" name="" />
+              <input type="email" required="true" name="email" />
               <span>Email</span>
             </div>
 
             <div class="input-box">
-              <textarea required="true" name=""></textarea>
+              <textarea required="true" name="message"></textarea>
               <span>Type your Message...</span>
             </div>
 
